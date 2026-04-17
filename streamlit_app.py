@@ -38,9 +38,9 @@ if ingredients_List:
     #st.write(ingredients_string)
 
   
-    my_insert_stmt = """ INSERT INTO smoothies.public.orders (ingredients,name_on_order) VALUES ('""" + ingredients_string + """','""" + name_on_order + """')"""
+        my_insert_stmt = """ INSERT INTO smoothies.public.orders (ingredients,name_on_order) VALUES ('""" + ingredients_string + """','""" + name_on_order + """')"""
 
-    st.write(my_insert_stmt)
+        st.write(my_insert_stmt)
 
 
     #st.write(my_insert_stmt)
@@ -49,10 +49,10 @@ if ingredients_List:
         #session.sql(my_insert_stmt).collect()
         #st.success('Your Smoothie is ordered!', icon="✅")
 
-    time_to_insert =st.button('Submit Order')
-    if time_to_insert:
-        session.sql(my_insert_stmt, [ingredients_string, name_on_order]).collect()
-        st.success(f'Your Smoothie is Ordered!,{name_on_order}! ',icon="✅")
-        st.stop()
+        time_to_insert =st.button('Submit Order')
+        if time_to_insert:
+            session.sql(my_insert_stmt, [ingredients_string, name_on_order]).collect()
+            st.success(f'Your Smoothie is Ordered!,{name_on_order}! ',icon="✅")
+            st.stop()
 
     
