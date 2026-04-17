@@ -57,6 +57,4 @@ sf_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=Tru
         st.success(f'Your Smoothie is Ordered!,{name_on_order}! ',icon="✅")
         st.stop()
 
-
-
     
