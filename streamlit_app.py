@@ -10,7 +10,9 @@ st.write("Choose the fruits you want in your custom Smoothie!")
 name_on_order=st.text_input('Name on Smoothies:')
 st.write('The name on your Smoothies will be:',name_on_order)
 
-session = get_active_session()
+cnx=st.connection("snowflake")
+session=cnx.session()
+
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 #st.dataframe(data=my_dataframe, use_container_width=True)
 
@@ -21,8 +23,7 @@ ingredients_List = st.multiselect(
 #st.write(ingredients_List)
 #st.text(ingredients_List)
 
-cnx=st.connection("snowflake")
-session=cnx.session()
+
 
 if ingredients_List:
     ingredients_string=''
