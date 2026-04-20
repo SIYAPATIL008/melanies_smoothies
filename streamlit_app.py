@@ -18,16 +18,6 @@ pd_df=my_dataframe.to_pandas()
 #st.stop()
 
 # Call API using selected fruit
-if fruit_chosen:
-    smoothiefroot_response = requests.get(
-        "https://my.smoothiefroot.com/api/fruit/" + fruit_chosen
-    )
-
-    # Display API response
-    st.dataframe(
-        data=smoothiefroot_response.json(),
-        use_container_width=True
-    )
 
 ingredients_List = st.multiselect(
     'Choose up to 5 ingredients:', my_dataframe, max_selections=5
