@@ -1,30 +1,19 @@
-# Import python packages.
-import streamlit as st
-from snowflake.snowpark.functions import col
-import requests 
-
-st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:")
-st.write("Choose the fruits you want in your custom Smoothie!")
-
-# User input
-name_on_order = st.text_input('Name on Smoothies:')
-st.write('The name on your Smoothies will be:', name_on_order)
-
-# Snowflake connection
-cnx = st.connection("snowflake")
-session = cnx.session()
-
-# Load fruit options from Snowflake
-my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
-
-# Convert to pandas for Streamlit UI
-pd_df = my_dataframe.to_pandas()
-
-# Let user choose a fruit
-fruit_chosen = st.selectbox(
-    'Choose a fruit:',
-    pd_df['FRUIT_NAME']
-)
+# Import python packages. 
+import streamlit as st 
+from snowflake.snowpark.functions import col import requests 
+st.title(":cup_with_straw: Customize Your Smoothie! :cup_with_straw:") 
+st.write("Choose the fruits you want in your custom Smoothie!") 
+name_on_order = st.text_input('Name on Smoothies:') 
+st.write('The name on your Smoothies will be:', name_on_order) 
+cnx = st.connection("snowflake") 
+session = cnx.session() 
+my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME')) 
+smoothiefroot_response = requests.get( "https://my.smoothiefroot.com/api/fruit/" + fruit_chosen) 
+st.dataframe(data=smoothiefroot_response.json(),use_container_width=True) 
+st.stop() 
+pd_df=my_dataframe.to_pandas() 
+st.dataframe(pd_df) 
+st.stop()
 
 # Call API using selected fruit
 if fruit_chosen:
