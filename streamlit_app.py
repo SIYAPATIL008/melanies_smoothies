@@ -13,10 +13,7 @@ cnx = st.connection("snowflake")
 session = cnx.session()
 
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
-st.dataframe(
-            data=smoothiefroot_response.json(),
-            use_container_width=True
-        )
+st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
 st.stop()
 
 pd_df=my_dtaframe.to_pandas()
