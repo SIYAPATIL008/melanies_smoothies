@@ -19,6 +19,10 @@ st.dataframe(
         )
 st.stop()
 
+pd_df=my_dtaframe.to_pandas()
+st.dataframe(pd_df)
+st.stop()
+
 ingredients_List = st.multiselect(
     'Choose up to 5 ingredients:', my_dataframe, max_selections=5
 )
