@@ -14,8 +14,8 @@ my_dataframe = session.table("smoothies.public.fruit_options").select(col('Fruit
 #st.stop() 
 
 pd_df=my_dataframe.to_pandas() 
-st.dataframe(pd_df) 
-st.stop()
+#st.dataframe(pd_df) 
+#st.stop()
 
 # Call API using selected fruit
 if fruit_chosen:
@@ -39,6 +39,9 @@ if ingredients_List:
 
     for fruit_chosen in ingredients_List:
         ingredients_string += fruit_chosen + ' '  
+
+        search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SERACH_ON'].iloc[0]
+        st.write('The Search value for ', fruit_chosen, ' is ', serch_on, '.')
 
         st.subheader(f"{fruit_chosen} Nutrition Information")
 
